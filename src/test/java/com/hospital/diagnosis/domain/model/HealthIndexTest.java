@@ -1,8 +1,6 @@
 package com.hospital.diagnosis.domain.model;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Set;
 
@@ -31,6 +29,15 @@ class HealthIndexTest {
                 .hasSize(1)
                 .containsExactly(Pathology.FRACTURE);
     }
-    
 
+    @Test
+    void should_identify_both_pathologies_when_multiple_of_three_and_five() {
+        HealthIndex healthIndex = HealthIndex.of(15);
+
+        Set<Pathology> pathologies = healthIndex.getPathologies();
+
+        assertThat(pathologies)
+                .hasSize(2)
+                .containsExactlyInAnyOrder(Pathology.CARDIAC, Pathology.FRACTURE);
+    }
 }
