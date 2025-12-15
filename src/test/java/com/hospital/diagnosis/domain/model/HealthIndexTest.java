@@ -1,10 +1,14 @@
 package com.hospital.diagnosis.domain.model;
 
+import com.hospital.diagnosis.domain.exception.InvalidHealthIndexException;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 class HealthIndexTest {
 
@@ -40,4 +44,13 @@ class HealthIndexTest {
                 .hasSize(2)
                 .containsExactlyInAnyOrder(Pathology.CARDIAC, Pathology.FRACTURE);
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, -1, -10, -100})
+    void should_throw_exception_when_health_index_is_not_positive(int invalidValue) {
+        assertThatThrownBy(() -> HealthIndex.of(invalidValue))
+                .isInstanceOf(InvalidHealthIndexException.class)
+                .hasMessage("Health index must be positive");
+    }
+
 }
