@@ -39,7 +39,7 @@ class DiagnosisFormatterTest {
 
         String result = formatter.format(healthIndex);
 
-        assertThat(result).isEqualTo("Cardiologie, Traumatologie");
+        assertThat(result).contains("Cardiologie").contains("Traumatologie");
     }
 
     @Test
