@@ -2,7 +2,7 @@ package com.hospital.diagnosis.domain.exception;
 
 public class InvalidHealthIndexException extends RuntimeException {
 
-    public InvalidHealthIndexException(String message) {
+    public InvalidHealthIndexException() {
         super("Health index must be positive");
     }
 }

@@ -1,5 +1,7 @@
 package com.hospital.diagnosis.domain.model;
 
+import com.hospital.diagnosis.domain.exception.InvalidHealthIndexException;
+
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -13,17 +15,20 @@ public final class HealthIndex {
     }
 
     public static HealthIndex of(int value) {
+        if (value <= 0) {
+            throw new InvalidHealthIndexException();
+        }
         return new HealthIndex(value);
     }
 
     public Set<Pathology> getPathologies() {
         Set<Pathology> pathologies = new HashSet<>();
 
-        if (value % 3 == 0 && value != 0) {
+        if (value % 3 == 0) {
             pathologies.add(Pathology.CARDIAC);
         }
 
-        if (value % 5 == 0 && value != 0) {
+        if (value % 5 == 0) {
             pathologies.add(Pathology.FRACTURE);
         }
 

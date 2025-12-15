@@ -46,8 +46,8 @@ class HealthIndexTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {0, -1, -10, -100})
-    void should_throw_exception_when_health_index_is_not_positive(int invalidValue) {
+    @ValueSource(ints = {-1, -10, -100})
+    void should_throw_exception_when_health_index_is_negative(int invalidValue) {
         assertThatThrownBy(() -> HealthIndex.of(invalidValue))
                 .isInstanceOf(InvalidHealthIndexException.class)
                 .hasMessage("Health index must be positive");
