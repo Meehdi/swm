@@ -53,4 +53,14 @@ class HealthIndexTest {
                 .hasMessage("Health index must be positive");
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 7, 13, 17, 19})
+    void should_return_empty_set_when_not_multiple_of_three_or_five(int value) {
+        HealthIndex healthIndex = HealthIndex.of(value);
+
+        Set<Pathology> pathologies = healthIndex.getPathologies();
+
+        assertThat(pathologies).isEmpty();
+    }
+
 }
