@@ -4,7 +4,6 @@ import com.hospital.diagnosis.domain.model.HealthIndex;
 import com.hospital.diagnosis.domain.model.MedicalUnit;
 import com.hospital.diagnosis.domain.model.Pathology;
 
-import java.util.Comparator;
 import java.util.stream.Collectors;
 
 public class DiagnosisFormatter {
